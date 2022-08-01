@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="jQuery-2.1.4/jquery-2.1.4.js"></script>
+</head>
+<body>
+    <button id="btn1">查询所有</button>
+    <button id="btn2">查询一个</button>
+    <button id="btn3">删除</button>
+    <button id="btn4">新增</button>
+    <button id="btn5">修改</button>
+</body>
+<script>
+    $(function () {
+        // 查询所有
+        $("#btn1").click(function () {
+            $.get("/employees",function (data) {
+                console.log(data);
+            });
+        });
+        // 查询一个
+        $("#btn2").click(function () {
+            var id = 11;
+            $.get("/employees/"+id+"",function (data) {
+                console.log(data)
+            });
+            /*var id = 88;
+            var optios = {
+                url : "/employees/"+id+"",
+                type : "get",
+                success : function (data) {
+                    console.log(data);
+                }
+            }
+            $.ajax(optios);*/
+        });
+        // 删除一个
+        $("#btn3").click(function () {
+            var id = 33;
+            var options = {
+                url : "/employees/"+id+"",
+                type : "DELETE",
+                success : function (data) {
+                    console.log(data);
+                }
+            }
+            $.ajax(options);
+        });
+        // 新增一个
+        $("#btn4").click(function () {
+            var obj = {id:null,name:"小羊99",age:18}
+            $.post("/employees",obj,function (data) {
+                console.log(data);
+            });
+        });
+        // 修改一个
+        $("#btn5").click(function () {
+            var obj = {id:99,name:"小羊99",age:18}
+            var options = {
+                url : "/employees",
+                type : "PUT",
+                data : obj,
+                success : function (data) {
+                    console.log(data)
+                }
+            }
+            $.ajax(options);
+        });
+    });
+</script>
+</html>
