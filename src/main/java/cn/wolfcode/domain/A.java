@@ -4,4 +4,6 @@ public class A {
 
     private int aa;
 
+    private int bb;
+
 }
